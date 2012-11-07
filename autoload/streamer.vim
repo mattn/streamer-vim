@@ -1,7 +1,9 @@
 function! streamer#start()
-  let username = get(g:, 'streamer#username', input('Username: '))
+  let username = get(g:, 'streamer#username', 0)
+  let username = type(username) == 0 ? input('Username: ') : username
   if len(username) == 0 | return | endif
-  let password = get(g:, 'streamer#password', inputsecret('Password: '))
+  let password = get(g:, 'streamer#password', 0)
+  let password = type(password) == 0 ? input('Password: ') : password
   if len(password) == 0 | return | endif
 
   let cmd  = printf("curl -s -u %s:%s %s",
